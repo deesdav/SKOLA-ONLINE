@@ -1,19 +1,32 @@
 """
 Skola online
 """
-class Student:    
-    def __init__(self, name):
+class Student:
+    """
+    class student
+    """
+    def __init__(self, student_name):
         """
         Constructor of Student
         """
-        self._name = name
+        self._student_name = student_name
         self._clazz = None
     @property
-    def name(self):
-        return self._name    
+    def student_name(self):
+        """
+        property student name
+        """
+        return self._student_name
+
     def set_class(self, clazz):
+        """
+        set class
+        """
         self._clazz = clazz
 class Clazz:
+    """
+    class clazz
+    """
     def __init__(self, clazz_name):
         """
         Constructor of Clazz
@@ -22,12 +35,21 @@ class Clazz:
         self._students = []
 
     def add_student(self, student):
+        """
+        add student
+        """
         self._students.append(student)
 
     def remove_student(self, student):
+        """
+        remove student
+        """
         self._students.remove(student)
 
 class Subject:
+    """
+    class subject
+    """
     def __init__(self, subject_name):
         """
         Constructor of Subject
@@ -36,9 +58,15 @@ class Subject:
         self._grades = {}
 
     def add_grade(self, student, grade):
+        """
+        add grade
+        """
         self._grades[student] = grade
 
     def get_total_grade(self):
+        """
+        get total grade
+        """
         if not self._grades:
             return 0
         return sum(self._grades.values()) / len(self._grades)
@@ -48,44 +76,69 @@ clazzes = []
 subjects = []
 
 def create_student(name):
+    """
+    create student
+    """
     student = Student(name)
     students.append(student)
     return student
 
 def remove_student(student):
-    try:
+    """
+    remove student
+    """
+    if student in students:
         students.remove(student)
-    except ValueError:
+    else:
         print("Student not found.")
 
 def edit_student(student, name):
+    """
+    edit student
+    """
     student._name = name
 
 def create_clazz(clazz_name):
+    """
+    create clazz
+    """
     clazz = Clazz(clazz_name)
     clazzes.append(clazz)
     return clazz
 
 def remove_clazz(clazz):
-    try:
+    """
+    remove clazz
+    """
+    if clazz in clazzes:
         clazzes.remove(clazz)
-    except ValueError:
+    else:
         print("Class not found.")
 
 def create_subject(predmet_name):
+    """
+    create subject
+    """
     subject = Subject(predmet_name)
     subjects.append(subject)
     return subject
 
 def remove_subject(subject):
-    try:
+    """
+    remove subject
+    """
+    if subject in subjects:
         subjects.remove(subject)
-    except ValueError:
+    else:
         print("Subject not found.")
+        subjects.remove(subject)
 
 def display_total_grades(subject):
+    """
+    display total grades
+    """
     for student, grade in subject._grades.items():
-        print(f"{student.name}: {grade}")
+        print(f"{student._student_name}: {grade}")
     total_grade = subject.get_total_grade()
     print(f"Total grade in {subject._subject_name}: {total_grade}")
 
@@ -113,7 +166,7 @@ if __name__ == "__main__":
         elif choice == "2":
             name = input("Enter the name of the student to delete: ")
             for student in students:
-                if student.name == name:
+                if student._student_name == name:
                     remove_student(student)
                     break
             else:
@@ -122,7 +175,7 @@ if __name__ == "__main__":
         elif choice == "3":
             name = input("Enter the name of the student to edit: ")
             for student in students:
-                if student.name == name:
+                if student._student_name == name:
                     new_name = input("Enter the new name of the student: ")
                     edit_student(student, new_name)
                     break
@@ -160,7 +213,7 @@ if __name__ == "__main__":
             subject_name = input("Enter the name of the subject: ")
             grade = int(input("Enter the grade: "))
             for student in students:
-                if student.name == student_name:
+                if student._student_name == student_name:
                     for subject in subjects:
                         if subject._subject_name == subject_name:
                             subject.add_grade(student, grade)

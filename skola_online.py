@@ -130,13 +130,13 @@ if __name__ == "__main__":
                 print("Student not found.")
 
         elif choice == "4":
-            class_name = input("Enter the name of the class: ")
-            create_clazz(class_name)
+            clazz_name = input("Enter the name of the class: ")
+            create_clazz(clazz_name)
 
         elif choice == "5":
-            class_name = input("Enter the name of the class to delete: ")
+            clazz_name = input("Enter the name of the class to delete: ")
             for clazz in clazzes:
-                if clazz.class_name == class_name:
+                if clazz.clazz_name == clazz_name:
                     remove_clazz(clazz)
                     break
             else:

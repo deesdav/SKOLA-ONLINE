@@ -32,7 +32,7 @@ class Clazz:
         Constructor of Clazz
         """
         self._clazz_name = clazz_name
-        self._students = []
+        self._students = [] # list
 
     def add_student(self, student):
         """
@@ -55,7 +55,7 @@ class Subject:
         Constructor of Subject
         """
         self._subject_name = subject_name
-        self._grades = {}
+        self._grades = {} # dict
 
     def add_grade(self, student, grade):
         """
@@ -63,17 +63,17 @@ class Subject:
         """
         self._grades[student] = grade
 
-    def get_total_grade(self):
+    def get_average_grade(self):
         """
-        get total grade
+        get average grade
         """
         if not self._grades:
             return 0
-        return sum(self._grades.values()) / len(self._grades)
+        return sum(self._grades.values()) / len(self._grades) # arithmetic average
 
-students = []
-clazzes = []
-subjects = []
+students = [] # list
+clazzes = [] # list
+subjects = [] # list
 
 def create_student(name):
     """
@@ -96,7 +96,7 @@ def edit_student(student, name):
     """
     edit student
     """
-    student._name = name
+    student._student_name = name
 
 def create_clazz(clazz_name):
     """
@@ -115,11 +115,11 @@ def remove_clazz(clazz):
     else:
         print("Class not found.")
 
-def create_subject(predmet_name):
+def create_subject(subject_name):
     """
     create subject
     """
-    subject = Subject(predmet_name)
+    subject = Subject(subject_name)
     subjects.append(subject)
     return subject
 
@@ -139,7 +139,7 @@ def display_total_grades(subject):
     """
     for student, grade in subject._grades.items():
         print(f"{student._student_name}: {grade}")
-    total_grade = subject.get_total_grade()
+    total_grade = subject.get_average_grade()
     print(f"Total grade in {subject._subject_name}: {total_grade}")
 
 if __name__ == "__main__":
@@ -154,7 +154,7 @@ if __name__ == "__main__":
         print("6. Create subject")
         print("7. Delete subject")
         print("8. Add grade")
-        print("9. Display total grades for subject")
+        print("9. Display total average grades for subject")
         print("10. Exit")
 
         choice = input("Choose an option (1-10): ")
@@ -189,7 +189,7 @@ if __name__ == "__main__":
         elif choice == "5":
             clazz_name = input("Enter the name of the class to delete: ")
             for clazz in clazzes:
-                if clazz.clazz_name == clazz_name:
+                if clazz._clazz_name == clazz_name:
                     remove_clazz(clazz)
                     break
             else:
